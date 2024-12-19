@@ -1,41 +1,11 @@
 # **UNITYPATH: Volunteer Matching System**
 
-![image](https://github.com/user-attachments/assets/1c7cbf45-bc55-4022-b688-0615844d2f82)
-
+![image](https://github.com/user-attachments/assets/1c7cbf45-bc55-4022-bc6880615844d2f82)
 
 ## **📚 Title and Purpose**
 **UNITYPATH** is a platform designed to connect volunteers with organizations working toward social good. The system facilitates the matching of volunteers to opportunities based on their skills, availability, and interests, allowing for more efficient collaboration and fostering unity in the community.
 
 ---
-![Screenshot 2024-12-12 225528](https://github.com/user-attachments/assets/11f19d23-120d-4783-8670-6766e38e4982)
-
-# Table of Contents
-- [Project Title and Purpose](#project-title-and-purpose)
-- [Objective and Key Features](#objective-and-key-features)
-- [Core Classes](#core-classes)
-  - [Opportunity](#opportunity)
-  - [Organization](#organization)
-  - [Volunteer](#volunteer)
-  - [User](#user)
-  - [TestConnection](#testconnection)
-- [Core Principles of OOP](#core-principles-of-oop)
-  - [Encapsulation](#encapsulation)
-  - [Inheritance](#inheritance)
-  - [Polymorphism](#polymorphism)
-  - [Abstraction](#abstraction)
-- [SDG Alignment](#sdg-alignment)
-- [Benefits](#benefits)
-- [How to Use](#how-to-use)
-- [Feature Enhancements](#feature-enhancements)
-- [Setup Instructions](#setup-instructions)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Tech Used](#tech-used)
-- [About the Developer](#about-the-developer)
-
----
-![image](https://github.com/user-attachments/assets/234bfb6d-7142-4076-ae49-2129c6258fbc)
-
 
 ## **🎯 Objective**
 The objective of **UNITYPATH** is to create a seamless volunteer matching platform that:
@@ -59,37 +29,44 @@ The objective of **UNITYPATH** is to create a seamless volunteer matching platfo
 ![image](https://github.com/user-attachments/assets/1a1ef512-11c7-4391-8a1c-d8ca037a2619)
 
 ## **📦 Core Classes**
-- **`Volunteer`:** This class represents a volunteer with attributes like `id`, `name`, `password`, and `skills`. It extends the abstract class `User` and provides the `viewOpportunities()` method for displaying available opportunities.
-- **`Organization`:** Represents an organization that can post volunteer opportunities. Includes methods for managing organizations and interacting with the volunteer database.
-- **`Opportunity`:** Represents a volunteer opportunity with fields like `title`, `requiredSkills`, `location`, and dates. This class manages the details of each opportunity.
-- **`User (Abstract)`:** This base class holds common attributes like `id`, `name`, and `email` for both volunteers and organizations. It defines the abstract method `viewOpportunities()` to be implemented by subclasses.
-- **`TestConnection`:** A utility class used to test the connection to a MySQL database, ensuring the system can interact with a database properly.
-- **`DesignUtils`:** A utility class for formatting output, clearing the screen, and printing styled headers and messages, helping improve user interaction.
+- **Volunteer:** This class represents a volunteer with attributes like id, name, password, and skills. It extends the abstract class User and provides the viewOpportunities() method for displaying available opportunities.
+- **Organization:** Represents an organization that can post volunteer opportunities. Includes methods for managing organizations and interacting with the volunteer database.
+- **Opportunity:** Represents a volunteer opportunity with fields like title, requiredSkills, location, and dates. This class manages the details of each opportunity.
+- **User (Abstract):** This base class holds common attributes like id, name, and email for both volunteers and organizations. It defines the abstract method viewOpportunities() to be implemented by subclasses.
+- **TestConnection:** A utility class used to test the connection to a MySQL database, ensuring the system can interact with a database properly.
+- **DesignUtils:** A utility class for formatting output, clearing the screen, and printing styled headers and messages, helping improve user interaction.
 
 ---
 
-![image](https://github.com/user-attachments/assets/14751afd-4857-41d4-a5d9-152f2b3ecbbc)
+## **💡 Database Schema & Relationships**
+### **Schema Overview:**
 
-## **🧑‍💻 Core Principles of OOP**
-The system follows key **Object-Oriented Programming** principles, such as:
+- **Volunteers Table:** 
+   - Columns: `id`, `name`, `password`, `skills`
+   - Stores volunteer details like id, name, password, and skills.
 
-1. **Encapsulation:** 
-   - Each class has its own attributes and methods, ensuring the internal workings of each object are hidden and only relevant data is exposed.
-   - Example: The `Volunteer` class encapsulates details like `name` and `skills`, while the `Opportunity` class encapsulates opportunity-specific details.
+- **Organizations Table:** 
+   - Columns: `id`, `name`, `password`
+   - Stores organization details like id, name, and password.
 
-2. **Inheritance:**
-   - The `User` class is an abstract base class that defines common properties like `id`, `name`, and `email`. Both `Volunteer` and `Organization` classes inherit from `User`, making the system extensible for future types of users.
+- **Opportunities Table:** 
+   - Columns: `id`, `title`, `requiredSkills`, `location`, `dates`, `postedBy (foreign key to Organizations)`
+   - Contains volunteer opportunity information and links to the `Organizations` table.
 
-3. **Polymorphism:**
-   - The abstract method `viewOpportunities()` in the `User` class allows different subclasses (e.g., `Volunteer`, `Organization`) to provide their specific implementations of how opportunities are viewed.
+- **Applications Table:** 
+   - Columns: `id`, `volunteerId (foreign key to Volunteers)`, `opportunityId (foreign key to Opportunities)`, `status`
+   - Tracks the status of volunteer applications to opportunities, linking `Volunteers` and `Opportunities`.
 
-4. **Abstraction:**
-   - Complex logic, such as database connections or console clearing, is abstracted into utility methods like those in the `DesignUtils` and `TestConnection` classes, simplifying the user-facing functionality.
+### **Relationships:**
+- **One-to-Many:** 
+   - One organization can post multiple opportunities, forming a one-to-many relationship between the `Organizations` and `Opportunities` tables.
+   
+- **Many-to-Many:** 
+   - Volunteers can apply for multiple opportunities, and each opportunity can have multiple applicants. This is managed via the `Applications` table, which serves as a junction table.
 
 ---
 
 ![image](https://github.com/user-attachments/assets/a7339ca8-0626-4189-a55b-388772881282)
-
 
 ## **🌍 SDG Alignment**
 **UNITYPATH** aligns with the following **Sustainable Development Goals (SDGs):**
@@ -122,17 +99,16 @@ The system follows key **Object-Oriented Programming** principles, such as:
 
 ![image](https://github.com/user-attachments/assets/85c7d9ac-3120-4e59-8bda-7b571e623656)
 
-
 ## **💻 How to Use**
 1. **Clone the repository:**
    - Download or clone this repository to your local machine.
 
 2. **Set up your database:**
    - Ensure that you have MySQL set up on your local or remote server.
-   - Create a database and configure the connection in the `TestConnection` class to ensure the system can interact with it.
+   - Create a database and configure the connection in the TestConnection class to ensure the system can interact with it.
 
 3. **Run the application:**
-   - Execute the `Main` class in your IDE or from the command line. This will start the application, and you can navigate through the menu to create organizations, view opportunities, and register as a volunteer.
+   - Execute the Main class in your IDE or from the command line. This will start the application, and you can navigate through the menu to create organizations, view opportunities, and register as a volunteer.
 
 4. **Interact with the menu:**
    - Follow the prompts in the terminal to create and manage organizations, sign up as a volunteer, and apply for opportunities.
@@ -141,41 +117,6 @@ The system follows key **Object-Oriented Programming** principles, such as:
 
    ```bash
    git clone https://github.com/yourusername/volunteer-matching-system.git
-
-6. **Install Dependencies:**
-
-   ```bash
-   mvn install
-
-7. **Run the Application:**
-
-    ```bash
-    mvn exec:java
-
-8. **Follow The Prompts**
-
----
-
-![image](https://github.com/user-attachments/assets/86e26e2a-e94f-479c-b359-d532e752924e)
-
-## **⚙ Feature Enhancements**
-
-- **Social Media Integration:**  
-   Allow volunteers to share opportunities and their experiences on social media, increasing engagement.
-
-- **Advanced Search Filters:**  
-   Improve the search functionality to allow filtering by multiple criteria (e.g., date range, specific skills, etc.).
-
-- **Notification System:**  
-   Implement notifications to alert volunteers about new opportunities, upcoming events, or status updates.
-
-- **Rating System for Volunteers:**  
-   Add a rating system for volunteers, where organizations can rate their performance and provide feedback.
-
-- **Mobile App Version:**  
-   Develop a mobile version of the platform for increased accessibility and reach.
----
-![image](https://github.com/user-attachments/assets/1e9b2e47-08c1-4b27-bc81-8629d92b8c67)
 
 ## **Tech Used**
 
