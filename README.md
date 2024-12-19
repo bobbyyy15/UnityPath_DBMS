@@ -133,9 +133,7 @@ The objective of **UNITYPATH** is to create a seamless volunteer matching platfo
 ![image](https://github.com/user-attachments/assets/5db1da3d-903a-4d0d-9399-65a2afb9be04)
 
 ## **About the Devoloper**
- Hey there! I’m Ken Patrick Joshua N. Gaa, the sole developer behind UNITYPATH. UNITYPATH was created as part of my Object-Oriented Programming (OOP) final project, where I was tasked with building a console application that follows OOP principles and aligns with Sustainable Development Goals (SDGs). This project has been both a rewarding and challenging experience, as it not only helped me with my academic goals but also has the potential to make a positive impact on the community.
-
-I designed UNITYPATH to facilitate volunteer matching, making it easier for individuals to connect with organizations in need of help. Although the system currently contains the basic features I envisioned, I’m excited about continuing to develop and expand it. Reaching this point in the project reflects my commitment to seeing it through to completion.
+ Hey there! I’m Ken Patrick Joshua N. Gaa, the sole developer behind UNITYPATH. Although the system currently contains the basic features I envisioned, I’m excited about continuing to develop and expand it. Reaching this point in the project reflects my commitment to seeing it through to completion.
 
 Developing UNITYPATH has taught me many valuable lessons, from managing databases to working through complex logic. Every step has been a learning experience, and at times, it has tested my patience. But through it all, it has helped me refine my skills and think critically about creating a platform that truly serves its users.
 
