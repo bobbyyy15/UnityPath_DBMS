@@ -1,6 +1,6 @@
 package dao;
 
-import Database.VolunteerMatchingDB;
+import dbms;
 import Models.Opportunity;
 
 import java.sql.Connection;
